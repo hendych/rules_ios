@@ -232,7 +232,7 @@ def _file_collector_rule_impl(ctx):
 
     replaced_frameworks = replaced_dyanmic_framework.values() + replaced_static_framework.replaced.values()
 
-    compat_link_opt = ["-L__BAZEL_XCODE_DEVELOPER_DIR__/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator", "-Wl,-weak-lswiftCompatibility51"]
+    compat_link_opt = (["-L__BAZEL_XCODE_DEVELOPER_DIR__/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator", "-Wl,-weak-lswiftCompatibility51"] if is_sim_arm64 else [])
 
     if len(replaced_frameworks):
         # Triple quote the new path to put them first. Eliminating other paths
